@@ -257,16 +257,17 @@ There are following three APIs -
 ```javascript
 {
     "success": false,
-    "message": "Database error occurred - syntax error at or near \"test\"",
+    "message": "<error_msg>",
     "data": null,
     "errors": [
         {
-            "error_constant": "DB_ERROR",
-            "message": "syntax error at or near \"test\"\nLINE 1: ...1%'  ORDER BY products.created_at desc LIMIT 50 OFFSET"
+            "error_constant": "SOME_ERROR_CONSTANT", # BAD_REQUEST, AUTH_FAILED, REQUIRED_FIELD etc.
+            "message": "<error_stacktrace>"
         }
     ]
 }
 ```
+e.g. -
 
 ```javascript
 {
