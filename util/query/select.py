@@ -21,6 +21,29 @@ class __JoinClause__(object):
         self.type = type
 
 class Query(object):
+    """
+    Builds the SQL query.
+    Usage -
+
+    ```
+
+    results = Query.select(Product.title, Product.brand, Product.mrp, Product.category, Category.name)\
+                .from_table(Product)\
+                .leftjoin(Category, Product.category, Category.id)\
+                .where(and_criteria=filter_by.get('and', []), or_criteria=filter_by.get('or', []))\
+                .slice(page=page, per_page=per_page)\
+                .order_by(*order_by).build().exec(self.pg_con, mapper=mapper)
+
+    `criterion` -> {
+        'field_name': 'Model.field',
+        'operator': 'eq',
+        'field_value': 'Some value'
+    }
+
+    ```
+
+    `criteria` is a collection of `criterion` dicts.
+    """
     def __init__(self):
         self.query = ""
         self.tablename = ""
@@ -113,19 +136,13 @@ class Query(object):
         return self
 
     def leftjoin(self, right_model_cls, left_model_field, right_model_field, right_model_cls_label=None):
-        # SELECT animal.ID, breed1.BreedName as BreedName1, breed2.BreadName as BreadName2
-        # FROM animal
-        #    LEFT JOIN breed as breed1 ON animal.breedID=breed1.ID
-        #    LEFT JOIN breed as breed2 ON animal.breedID=breed2.ID
-        # WHERE animal.ID='7';
         self.joins.append(__JoinClause__(right_model_cls, left_model_field, right_model_field,
                                          right_model_cls_label=right_model_cls_label, type='LEFT'))
         return self
 
     def build(self):
         """
-        Constructs SQL-alchemy queryset via JSON.
-        :return: SQL-alchemy queryset.
+        Constructs SQL query.
         """
         joinclause = []
         for jclause in self.joins:
@@ -154,6 +171,13 @@ class Query(object):
         return self
 
     def exec(self, pg_con, query_params={}, mapper=None):
+        """
+        Executes the query(`self.query`) constructed via `build()` method.
+        :param pg_con:
+        :param query_params:
+        :param mapper:
+        :return:
+        """
         self.query_params.update(query_params)
         with pg_con:
             with pg_con.cursor(cursor_factory=RealDictCursor) as cur:
