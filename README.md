@@ -64,10 +64,10 @@ There are following three APIs -
 	"title": "title9837",
 	"description": "description90548",
 	"sku": "sku9494",
-  "category": "a572aae1-8b8c-4a8d-a17d-4655b8487960", # category id
-  "prod_type": "prodtype405",
-  "mrp": 220,
-  "available_price": 205
+  	"category": "a572aae1-8b8c-4a8d-a17d-4655b8487960", # category id
+  	"prod_type": "prodtype405",
+  	"mrp": 220,
+  	"available_price": 205
 }
 ```
 
@@ -94,9 +94,9 @@ There are following three APIs -
 	"title": "title12updated",
 	"description": "description12upd",
 	"sku": "sku12",
-  "category": "a572aae1-8b8c-4a8d-a17d-4655b8487960",
-  "prod_type": "prodtype12",
-  "mrp": 84
+  	"category": "a572aae1-8b8c-4a8d-a17d-4655b8487960",
+  	"prod_type": "prodtype12",
+  	"mrp": 84
 }
 ```
 
@@ -120,7 +120,8 @@ There are following three APIs -
 ```javascript
 {
 	"filter_by": {
-		"and": [ # WHERE condition1 AND condition2 AND......AND conditionN
+		# WHERE condition1 AND condition2 AND......AND conditionN
+		"and": [ 
 			{
 				"field_name": "Product.title",  # Model.field
 				"operator": "contains",
@@ -132,7 +133,8 @@ There are following three APIs -
 				"field_value": "Android"
 			}
 		],
-		"or": [   # WHERE condition1 OR condition2 OR......OR conditionN
+		# WHERE condition1 OR condition2 OR......OR conditionN
+		"or": [
 			{
 				"field_name": "Product.sku",
 				"operator": "contains",
