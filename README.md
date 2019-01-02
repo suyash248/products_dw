@@ -252,7 +252,35 @@ There are following three APIs -
 }
 ```
 
+### Error format - 
 
+```javascript
+{
+    "success": false,
+    "message": "Database error occurred - syntax error at or near \"test\"",
+    "data": null,
+    "errors": [
+        {
+            "error_constant": "DB_ERROR",
+            "message": "syntax error at or near \"test\"\nLINE 1: ...1%'  ORDER BY products.created_at desc LIMIT 50 OFFSET"
+        }
+    ]
+}
+```
+
+```javascript
+{
+    "success": false,
+    "message": "Database error occurred - syntax error at or near \"test\"",
+    "data": null,
+    "errors": [
+        {
+            "error_constant": "DB_ERROR",
+            "message": "syntax error at or near \"test\"\nLINE 1: ...1%'  ORDER BY products.created_at desc LIMIT 50 OFFSET"
+        }
+    ]
+}
+```
 
 ### Links -
  - [Postmant API dump](https://github.com/suyash248/products_dw/blob/master/Products_Dw.postman_collection.json)
