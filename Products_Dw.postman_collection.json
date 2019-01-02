@@ -1,0 +1,189 @@
+{
+	"info": {
+		"_postman_id": "176bd2ba-0ad4-4add-bb91-8c86468a8825",
+		"name": "Products_Dw",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Add product",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"brand\": \"b9834\",\n\t\"title\": \"title9837\",\n\t\"description\": \"description90548\",\n\t\"sku\": \"sku9494\",\n    \"category\": \"a572aae1-8b8c-4a8d-a17d-4655b8487960\",\n    \"prod_type\": \"prodtype405\",\n    \"mrp\": 220,\n    \"available_price\": 205\n}"
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/v1/products",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"v1",
+						"products"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update product",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"brand\": \"b7\",\n\t\"title\": \"title12updated\",\n\t\"description\": \"description12upd\",\n\t\"sku\": \"sku12\",\n    \"category\": \"a572aae1-8b8c-4a8d-a17d-4655b8487960\",\n    \"prod_type\": \"prodtype12\",\n    \"mrp\": 84\n}"
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/v1/products/984e6452-ff3a-4f95-968d-e00b22b30ff4",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"v1",
+						"products",
+						"984e6452-ff3a-4f95-968d-e00b22b30ff4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get products",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:5000/api/v1/products?page=2&per_page=5",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"v1",
+						"products"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "2"
+						},
+						{
+							"key": "per_page",
+							"value": "5"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get products by discount",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:5000/api/v1/products/discounts",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"v1",
+						"products",
+						"discounts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get product",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:5000/api/v1/products/984e6452-ff3a-4f95-968d-e00b22b30ff4",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"v1",
+						"products",
+						"984e6452-ff3a-4f95-968d-e00b22b30ff4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Filter products",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"filter_by\": {\n\t\t\"and\": [\n\t\t\t{\n\t\t\t\t\"field_name\": \"Product.title\",\n\t\t\t\t\"operator\": \"contains\",\n\t\t\t\t\"field_value\": \"1\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"field_name\": \"Category.name\",\n\t\t\t\t\"operator\": \"eq\",\n\t\t\t\t\"field_value\": \"Android\"\n\t\t\t}\n\t\t],\n\t\t\"or\": [\n\t\t\t{\n\t\t\t\t\"field_name\": \"Product.sku\",\n\t\t\t\t\"operator\": \"contains\",\n\t\t\t\t\"field_value\": \"1\"\n\t\t\t}\n\t\t]\n\t},\n\t\"order_by\": [\"-Product.created_at\"]\n}"
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/v1/products/filter?page=1&per_page=50",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"v1",
+						"products",
+						"filter"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "1"
+						},
+						{
+							"key": "per_page",
+							"value": "50"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
