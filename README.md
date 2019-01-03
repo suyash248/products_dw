@@ -290,3 +290,4 @@ e.g. -
 1. Unit test cases.
 2. Use a wsgi server like Gunicorn.
 3. Centralized logging.
+4. DB migrations(like alembic).
